@@ -27,8 +27,8 @@ _+ load(): Annotator_
     <coordinates>
       <x>572</x>
       <y>55</y>
-      <w>286</w>
-      <h>319</h>
+      <w>374</w>
+      <h>330</h>
     </coordinates>
     <panel_attributes>*Match*
 --
@@ -67,7 +67,7 @@ m2=0..n</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>693</x>
+      <x>781</x>
       <y>418</y>
       <w>165</w>
       <h>132</h>
@@ -118,12 +118,12 @@ m2=2</panel_attributes>
     <coordinates>
       <x>440</x>
       <y>319</y>
-      <w>274</w>
+      <w>362</w>
       <h>153</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=1..n</panel_attributes>
-    <additional_attributes>132;33;33;33;33;132;253;132</additional_attributes>
+    <additional_attributes>132;33;33;33;33;132;341;132</additional_attributes>
   </element>
 </diagram>
