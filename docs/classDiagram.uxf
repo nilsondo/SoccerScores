@@ -19,6 +19,7 @@ _+ load(): Annotator_
 + add_match(home: str, away: str): bool
 + remove_match(match_code: str): bool
 + get_matches(): dict
++ set_matches(): bool
 + get_match(match_code: str): Match</panel_attributes>
     <additional_attributes/>
   </element>
