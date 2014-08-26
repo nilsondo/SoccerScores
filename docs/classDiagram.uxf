@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="12.2">
+  <zoom_level>11</zoom_level>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>88</x>
+      <y>55</y>
+      <w>297</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>*Annotator*
+--
+- matches: dict
+--
+_+ create(): Annotator_
+_+ load(): Annotator_
++ save(): bool
++ add_match(home: str, away: str): bool
++ remove_match(match_code: str): bool
++ get_matches(): dict
++ get_match(match_code: str): Match</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>572</x>
+      <y>55</y>
+      <w>286</w>
+      <h>319</h>
+    </coordinates>
+    <panel_attributes>*Match*
+--
+_- defined_teams: dict_
+- home: Team
+- away: Team
+- score: dict
+- plays: list
+- time: time
+- date: date
+- state: bool
+--
+_+ create(home: str, away: str): Match_
++ get_match(): Match
++ add_play(team: int, type: int, descrption: str): bool
++ add_point(team: str): bool
++ get_plays(): list
++ finish_match(): bool
++ start_match(): bool
++ get_state(): bool</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>352</x>
+      <y>88</y>
+      <w>241</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m1= 1
+m2=0..n</panel_attributes>
+    <additional_attributes>33;33;220;33</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>693</x>
+      <y>418</y>
+      <w>165</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>*Play*
+--
+_- defined_types: dict_
+- type: int
+- description: str
+- team: str
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>88</x>
+      <y>297</y>
+      <w>253</w>
+      <h>143</h>
+    </coordinates>
+    <panel_attributes>*Team*
+--
+- name: str
+- players: dict
+--
++ get_name(): str
++ get_players: dict
++ get_player(player_num: int): str</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>308</x>
+      <y>275</y>
+      <w>285</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=2</panel_attributes>
+    <additional_attributes>264;33;33;33</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>440</x>
+      <y>319</y>
+      <w>274</w>
+      <h>153</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=1..n</panel_attributes>
+    <additional_attributes>132;33;33;33;33;132;253;132</additional_attributes>
+  </element>
+</diagram>
