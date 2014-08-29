@@ -1,5 +1,6 @@
 import unittest
 from tests.access import annotator
+from tests.core import play
 import sys
 
 
@@ -9,6 +10,7 @@ def suite():
     '''
     test_suite = unittest.TestSuite()
     test_suite.addTest(unittest.makeSuite(annotator.Test))
+    test_suite.addTest(unittest.makeSuite(play.Test))
     return test_suite
 
 if __name__ == "__main__":

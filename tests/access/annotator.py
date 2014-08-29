@@ -26,7 +26,7 @@ class Test(unittest.TestCase):
     1.0 - Annotator should be able to create an object instance
     1.1 - Annotator should be able to add matches
     1.2 - Annotator should be able to remove matches
-    1.2 - Annotator should be able to get an specifix match
+    1.3 - Annotator should be able to get an specifix match
     '''
     def setUp(self):
         print ""

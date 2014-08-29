@@ -4,8 +4,8 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>88</x>
-      <y>55</y>
+      <x>0</x>
+      <y>11</y>
       <w>297</w>
       <h>198</h>
     </coordinates>
@@ -26,8 +26,8 @@ _+ load(): Annotator_
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>572</x>
-      <y>55</y>
+      <x>484</x>
+      <y>11</y>
       <w>374</w>
       <h>330</h>
     </coordinates>
@@ -55,8 +55,8 @@ _+ create(home: str, away: str): Match_
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>352</x>
-      <y>88</y>
+      <x>264</x>
+      <y>44</y>
       <w>241</w>
       <h>54</h>
     </coordinates>
@@ -68,26 +68,30 @@ m2=0..n</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>781</x>
-      <y>418</y>
+      <x>660</x>
+      <y>374</y>
       <w>165</w>
-      <h>132</h>
+      <h>176</h>
     </coordinates>
     <panel_attributes>*Play*
 --
 _- defined_types: dict_
+_- defined_spec: dict_
 - type: int
+- spec: int
 - description: str
 - team: str
+- time: int
 --
++ display(): str
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>88</x>
-      <y>297</y>
+      <x>0</x>
+      <y>253</y>
       <w>253</w>
       <h>143</h>
     </coordinates>
@@ -104,8 +108,8 @@ _- defined_types: dict_
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>308</x>
-      <y>275</y>
+      <x>220</x>
+      <y>231</y>
       <w>285</w>
       <h>54</h>
     </coordinates>
@@ -117,14 +121,14 @@ m2=2</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>440</x>
-      <y>319</y>
-      <w>362</w>
+      <x>352</x>
+      <y>275</y>
+      <w>329</w>
       <h>153</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=1..n</panel_attributes>
-    <additional_attributes>132;33;33;33;33;132;341;132</additional_attributes>
+    <additional_attributes>132;33;33;33;33;132;308;132</additional_attributes>
   </element>
 </diagram>
