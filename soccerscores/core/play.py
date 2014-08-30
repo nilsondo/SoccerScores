@@ -43,6 +43,7 @@ class Play:
         Getter for the type attribute.
         '''
         return self.__ptype
+
     @ptype.setter
     def ptype(self, value):
         '''
@@ -56,6 +57,7 @@ class Play:
         Getter for the spec attribute.
         '''
         return self.__spec
+
     @spec.setter
     def spec(self, value):
         '''
@@ -69,6 +71,7 @@ class Play:
         Getter for the team attribute.
         '''
         return self.__team
+
     @team.setter
     def team(self, value):
         '''
@@ -82,6 +85,7 @@ class Play:
         Getter for the description attribute.
         '''
         return self.__descrip
+
     @descrip.setter
     def descrip(self, value):
         '''
@@ -95,6 +99,7 @@ class Play:
         Getter for the time attribute.
         '''
         return self.__time
+
     @time.setter
     def time(self, value):
         '''
@@ -106,4 +111,4 @@ class Play:
         '''
         Returns a string with time, type and description of the play.
         '''
-        return self.__time + "' " + self.__ptype + ', ' + self.description
+        return str(self.__time) + "' " + self.__defined_types[self.__ptype] + ", " + self.__descrip
