@@ -1,5 +1,6 @@
 class Play:
     '''
+    Play class.
     '''
 
     __defined_types = {0: 'Gol', 1: 'Red Card', 2: 'Yellow Card', 3: 'Change',
@@ -8,7 +9,7 @@ class Play:
                        2: 'Saque de meta', 3: 'Pase', 4: 'Centro',
                        5: 'Despeje', 6: 'Posicion adelantada', 404: ''}
 
-    def __init__(self, ptype, spec, team, descrip, time):
+    def __init__(self, ptype, spec, team, descrip, time=None):
         '''
         Constructor
         '''
@@ -111,4 +112,6 @@ class Play:
         '''
         Returns a string with time, type and description of the play.
         '''
-        return str(self.__time) + "' " + self.__defined_types[self.__ptype] + ", " + self.__descrip
+        return (str(self.__time) + "' " +
+                self.__defined_types[self.__ptype] +
+                ", " + self.__descrip)

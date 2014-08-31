@@ -1,0 +1,113 @@
+from soccerscores.core.team import Team
+import datetime as dt
+
+
+class Match:
+
+    '''
+    Match class.
+    '''
+    __defined_teams = {1: 'home', 2: 'away'}
+    __separator = r'vs'
+
+    def __init__(self, home, away):
+        '''
+        Constructor
+        '''
+
+        if isinstance(home, Team) and isinstance(away, Team):
+            self.__home = home
+            self.__away = away
+        else:
+            raise Exception('Invalid teams.')
+
+        self.__date = dt.date.today()
+        self.__time = None
+        self.__state = None
+        self.__score = {1: 0, 2: 0}
+        self.__plays = []
+
+        # Creating the match id
+        self.__mid = (
+            home.name[:3].upper() +
+            self.__separator +
+            away.name[:3].upper() +
+            self.__date.strftime('%d'))
+
+    def add_play(self, play):
+        '''
+        Add a given play to the plays stack of the given Match.
+        '''
+        return True
+
+    def add_point(self, team):
+        '''
+        Add one point to a valid team in the score.
+        '''
+        try:
+            self.__score[team] = self.__score[team] + 1
+        except:
+            return False
+        return True
+
+    def start_match(self):
+        '''
+        Set the state of the match to start.
+        '''
+        if self.__state:
+            return False
+        else:
+            self.__state = True
+            self.__time = None
+        return True
+
+    def finish_match(self):
+        '''
+        Set the state of the match to finish.
+        '''
+        self.__state = False
+        return True
+
+    def display(self):
+        '''
+        Return the string format description for the given match.
+        '''
+        return (
+            self.__mid + ' '*3 +
+            self.__home.name + ' ' +
+            self.__separator + ' ' +
+            self.__away.name + ' '*3 +
+            str(self.__score[1]) + ' - ' +
+            str(self.__score[2]))
+
+    @property
+    def home(self):
+        '''
+        Getter for the home team attribute.
+        '''
+        return self.__home
+
+    @property
+    def away(self):
+        '''
+        Getter for the away team attribute.
+        '''
+        return self.__away
+
+    @property
+    def mid(self):
+        '''
+        Getter for the match id.
+        '''
+        return self.__mid
+
+    @property
+    def state(self):
+        '''
+        Getter for the match state.
+        '''
+        return self.__state
+
+    @property
+    def score(self):
+        return self.__score

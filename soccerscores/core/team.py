@@ -2,7 +2,7 @@ class Team:
     '''
     '''
 
-    def __init__(self, name, players):
+    def __init__(self, name, players=None):
         '''
         Constructor
         '''
@@ -11,7 +11,9 @@ class Team:
         else:
             raise Exception("Invalid team name.")
 
-        if (isinstance(players, dict) and len(players.keys()) > 6
+        if not players:
+            self.__players = {}
+        elif (isinstance(players, dict) and len(players.keys()) > 6
                 and len(players.keys()) < 12):
             self.__players = players
         else:
@@ -35,4 +37,7 @@ class Team:
         '''
         Returns a single player name from the players dictionary.
         '''
-        return self.__players[player_num]
+        try:
+            return self.__players[player_num]
+        except:
+            raise Exception('Invalid player number.')

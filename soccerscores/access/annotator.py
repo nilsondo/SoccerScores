@@ -62,9 +62,3 @@ class Annotator:
         Getter for the matches attribute.
         '''
         return self.__matches
-    @matches.setter
-    def matches(self, value):
-        '''
-        Setter for the matches attribute.
-        '''
-        self.__matches = value

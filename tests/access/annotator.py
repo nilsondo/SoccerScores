@@ -1,5 +1,7 @@
 import unittest
 from soccerscores.access.annotator import Annotator
+from soccerscores.core.match import Match
+from soccerscores.core.team import Team
 
 
 class TestMatch():
@@ -42,9 +44,11 @@ class Test(unittest.TestCase):
         self.assertIsInstance(annotator, Annotator, msg)  # 1.0
         print "Annotator Test Set: 1.0 Success"
 
-        match = TestMatch(home='FC Barcelona',
-                          away='FC Bayern Munich',
-                          mid='FCBvsFCBM')
+        home = Team(name='Barcelona')
+        away = Team(name='Bayern Munich')
+
+        match = Match(home=home,
+                      away=away)
 
         annotator.add_match(match)
 
