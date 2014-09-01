@@ -40,7 +40,7 @@ class Annotator:
                 return cls.create()
 
             handle.close()
-        except IOError:
+        except:
             return cls.create()
 
     def save(self):
