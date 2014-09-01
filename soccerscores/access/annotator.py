@@ -42,7 +42,13 @@ class Annotator:
         '''
         Remove the given match to the matches list.
         '''
-        del self.__matches[match.mid]
+        if len(self.__matches) > 0:
+            try:
+                del self.__matches[match.mid]
+            except:
+                return None
+        else:
+            return None
 
     def get_match(self, mid):
         '''

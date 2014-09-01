@@ -8,8 +8,8 @@ class Test(unittest.TestCase):
     '''
     1.0 - Match should be able to create an object instance.
     1.1 - Match should be able to start a match.
-    1.2 - Match should be able to finish a match.
-    1.3 - Match should be able to add points.
+    1.2 - Match should be able to add points.
+    1.3 - Match should be able to finish a match.
     1.4 - Match should be able to display a summary of itself.
     '''
 
@@ -37,18 +37,18 @@ class Test(unittest.TestCase):
         self.assertTrue(match.state, msg)  # 1.1
         print "Match Test Set: 1.1 Success"
 
-        match.finish_match()
-
-        msg = "Finish match fail."
-        self.assertFalse(match.state, msg)  # 1.2
-        print "Match Test Set: 1.2 Success"
-
         match.add_point(team=1)
         match.add_point(team=1)
         match.add_point(team=2)
 
         msg = "Score match fail."
-        self.assertEqual(match.score, {1: 2, 2: 1}, msg)  # 1.3
+        self.assertEqual(match.score, {1: 2, 2: 1}, msg)  # 1.2
+        print "Match Test Set: 1.2 Success"
+
+        match.finish_match()
+
+        msg = "Finish match fail."
+        self.assertFalse(match.state, msg)  # 1.3
         print "Match Test Set: 1.3 Success"
 
         summary = match.display()

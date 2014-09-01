@@ -8,7 +8,7 @@ class Match:
     Match class.
     '''
     __defined_teams = {1: 'home', 2: 'away'}
-    __separator = r'vs'
+    __separator = r'VS'
 
     def __init__(self, home, away):
         '''
@@ -38,28 +38,32 @@ class Match:
         '''
         Add a given play to the plays stack of the given Match.
         '''
-        return True
+        if self.__state:
+            self.__plays.append(play)
+            return True
+        return False
 
     def add_point(self, team):
         '''
         Add one point to a valid team in the score.
         '''
-        try:
-            self.__score[team] = self.__score[team] + 1
-        except:
-            return False
-        return True
+        if self.__state:
+            try:
+                self.__score[team] = self.__score[team] + 1
+            except:
+                return False
+            return True
+        return False
 
     def start_match(self):
         '''
         Set the state of the match to start.
         '''
-        if self.__state:
-            return False
-        else:
+        if self.__state is None:
             self.__state = True
             self.__time = None
-        return True
+            return True
+        return False
 
     def finish_match(self):
         '''
@@ -73,10 +77,9 @@ class Match:
         Return the string format description for the given match.
         '''
         return (
-            self.__mid + ' '*3 +
             self.__home.name + ' ' +
             self.__separator + ' ' +
-            self.__away.name + ' '*3 +
+            self.__away.name + ' ' +
             str(self.__score[1]) + ' - ' +
             str(self.__score[2]))
 
