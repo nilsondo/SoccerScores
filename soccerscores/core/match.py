@@ -116,3 +116,7 @@ class Match:
     @property
     def score(self):
         return self.__score
+
+    @property
+    def plays(self):
+        return self.__plays

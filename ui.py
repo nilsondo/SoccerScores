@@ -80,12 +80,12 @@ def view_annotator():
 
                     if(re.match(r'(^[A-Za-z][A-Za-z]*$)+', home_name) and
                        re.match(r'(^[A-Za-z][A-Za-z]*$)+', away_name)):
-                            home = Team(name=home_name)
-                            away = Team(name=away_name)
+                        home = Team(name=home_name)
+                        away = Team(name=away_name)
 
-                            match = Match(home=home, away=away)
+                        match = Match(home=home, away=away)
 
-                            annotator.add_match(match)
+                        annotator.add_match(match)
                     else:
                         print 'Invalid team name, just use letters.'
                         sys.stdin.read(1)
@@ -164,14 +164,20 @@ def view_match(match):
 
     global flag
     options = {1: 'Return to matches options', 0: 'Exit',
-               3: 'Start match', 4: 'Finish match', 5: 'Add play'}
+               2: 'Start match', 3: 'Finish match', 4: 'Add play'}
+    str_plays = {}
 
     while(flag):
         sys.stdin.flush()
         os.system('cls' if os.name == 'nt' else 'clear')
 
+        i = 1
+        for play in match.plays:
+            str_plays[i] = play.display()
+            i = i + 1
+
         template(title=match.display().upper(), footer=False)
-        template(title='PLAYS', options={}, header=False, footer=False)
+        template(title='PLAYS', options=str_plays, header=False, footer=False)
         template(title='MATCH OPTIONS', options=options, header=False)
 
         try:
@@ -184,17 +190,51 @@ def view_match(match):
                 elif opt == 1:
                     return
                 elif opt == 2:
-                    pass
-                elif opt == 3:
                     if match.start_match():
                         print 'Match started'
                         sys.stdin.read(1)
-                elif opt == 4:
+                elif opt == 3:
                     if match.finish_match():
                         print 'Match finished'
                         sys.stdin.read(1)
-                elif opt == 5:
-                    pass
+                elif opt == 4:
+                    if match.state:
+                        try:
+                            time = int(raw_input("Play's time (min): "))
+                            ptype = int(raw_input("Play's type (options(int)->" +
+                                                  " 0: 'Gol', 1: 'Red Card', 2:" +
+                                                  " 'Yellow Card', 3: 'Change'," +
+                                                  "4: 'Comment': "))
+                            spec = int(raw_input("Play's spec (options(int)->" +
+                                                 " 0: 'Hand kick', " +
+                                                 "1: 'Croner kick', " +
+                                                 "2: 'Goal kick', 3: 'Pass', " +
+                                                 "4: 'Center', 5: 'Clearance', " +
+                                                 "6: 'Ahead position', " +
+                                                 "7: 'None':"))
+                            team = str(
+                                raw_input("Play's team (home/away): ")).lower()
+                            # team_name = match.team
+
+                            descrip = str(raw_input("Play's descrip: ")).upper()
+                            play = Play(time=time, ptype=ptype, spec=spec,
+                                        team=team_name, descrip=descrip)
+                            match.add_play(play)
+
+                            if ptype == 0:
+                                t = 1
+                                if team == 'away':
+                                    t = 2
+                                match.add_point(t)
+                        # except Exception as e:
+                            # print e.args
+                        except:
+                            print 'Invalid play argument(s), press ENTER to continue...'
+                            sys.stdin.read(1)
+                    else:
+                        print 'Match is not started or has finished, press ENTER to continue...'
+                        sys.stdin.read(1)
+
             else:
                 print 'Unknown option, press ENTER to continue...'
                 sys.stdin.read(1)

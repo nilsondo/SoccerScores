@@ -5,9 +5,9 @@ class Play:
 
     __defined_types = {0: 'Gol', 1: 'Red Card', 2: 'Yellow Card', 3: 'Change',
                        4: 'Comment'}
-    __defined_specs = {0: 'Saque de mano', 1: 'Tiro de esquina',
-                       2: 'Saque de meta', 3: 'Pase', 4: 'Centro',
-                       5: 'Despeje', 6: 'Posicion adelantada', 404: ''}
+    __defined_specs = {0: 'Hand kick', 1: 'Croner kick',
+                       2: 'Goal kick', 3: 'Pass', 4: 'Center',
+                       5: 'Clearance', 6: 'Ahead position', 7: 'None'}
 
     def __init__(self, ptype, spec, team, descrip, time=None):
         '''
