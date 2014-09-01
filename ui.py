@@ -1,5 +1,6 @@
 import os
 import sys
+import re
 
 
 # global flag to stop TUI work flow
@@ -22,7 +23,7 @@ def template(title, options=None, descrp=None, header=True, footer=True):
         print up
 
     print mid
-    prt_opt(title + ":")
+    prt_opt(title)
     print mid
 
     if descrp:
@@ -55,7 +56,7 @@ def view_annotator():
     from soccerscores.core.team import Team
 
     global flag
-    annotator = Annotator.create()
+    annotator = Annotator.load()
 
     options = {1: 'View matches', 2: 'Create new match', 0: 'Exit'}
 
@@ -63,10 +64,10 @@ def view_annotator():
         sys.stdin.flush()
         os.system('cls' if os.name == 'nt' else 'clear')
 
-        template('OPTIONS', options)
+        template(title='OPTIONS', options=options)
 
         try:
-            opt = int(raw_input('Option: '))
+            opt = int(raw_input('OPTION: '))
 
             if opt in options:
                 if opt == 0:
@@ -74,12 +75,20 @@ def view_annotator():
                 elif opt == 1:
                     view_matches(annotator)
                 elif opt == 2:
-                    home = Team(name=str(raw_input('Home team name: ')))
-                    away = Team(name=str(raw_input('Away team name: ')))
+                    home_name = str(raw_input('Home team name: '))
+                    away_name = str(raw_input('Away team name: '))
 
-                    match = Match(home=home, away=away)
+                    if(re.match(r'(^[a-z][a-z]*$)+', home_name) and
+                       re.match(r'(^[a-z][a-z]*$)+', away_name)):
+                            home = Team(name=home_name)
+                            away = Team(name=away_name)
 
-                    annotator.add_match(match)
+                            match = Match(home=home, away=away)
+
+                            annotator.add_match(match)
+                    else:
+                        print 'Invalid team name, just use letters.'
+                        sys.stdin.read(1)
             else:
                 print 'Unknown option, press ENTER to continue...'
                 sys.stdin.read(1)
@@ -87,10 +96,13 @@ def view_annotator():
             print 'Unknown option, press ENTER to continue...'
             sys.stdin.read(1)
 
+    annotator.save()
+
 
 def view_matches(annotator):
-    from soccerscores.core.play import Play
-
+    '''
+    View matches function.
+    '''
     global flag
     options = {1: 'Return to main options', 0: 'Exit', 2: 'View Match',
                3: 'Remove Match'}
@@ -103,12 +115,12 @@ def view_matches(annotator):
         sys.stdin.flush()
         os.system('cls' if os.name == 'nt' else 'clear')
 
-        template('MATCHES', options=str_matches, footer=False,
+        template(title='MATCHES', options=str_matches, footer=False,
                  descrp='ID - DESCRIPTION:')
-        template('MATCHES OPTIONS', options, header=False)
+        template(title='MATCHES OPTIONS', options=options, header=False)
 
         try:
-            opt = int(raw_input('Option: '))
+            opt = int(raw_input('OPTION: '))
 
             if opt in options:
                 if opt == 0:
@@ -145,6 +157,9 @@ def view_matches(annotator):
 
 
 def view_match(match):
+    '''
+    View match function.
+    '''
     from soccerscores.core.play import Play
 
     global flag
@@ -155,9 +170,9 @@ def view_match(match):
         sys.stdin.flush()
         os.system('cls' if os.name == 'nt' else 'clear')
 
-        template(match.display().upper(), footer=False)
-        template('PLAYS', {}, header=False, footer=False)
-        template('MATCH OPTIONS', options, header=False)
+        template(title=match.display().upper(), footer=False)
+        template(title='PLAYS', options={}, header=False, footer=False)
+        template(title='MATCH OPTIONS', options=options, header=False)
 
         try:
             opt = int(raw_input('Option: '))
@@ -187,4 +202,5 @@ def view_match(match):
             print 'Unknown option, press ENTER to continue...'
             sys.stdin.read(1)
 
-view_annotator()
+if __name__ == '__main__':
+    view_annotator()

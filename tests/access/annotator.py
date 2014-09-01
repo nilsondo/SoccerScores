@@ -29,6 +29,7 @@ class Test(unittest.TestCase):
     1.1 - Annotator should be able to add matches
     1.2 - Annotator should be able to remove matches
     1.3 - Annotator should be able to get an specifix match
+    1.4 - Annotator should be able to save and load from an static file
     '''
     def setUp(self):
         print ""
@@ -69,3 +70,11 @@ class Test(unittest.TestCase):
         msg = "Annotator get match fail."
         self.assertEquals(match_copy.mid, match_mid, msg)  # 1.3
         print "Annotator Test Set: 1.3 Success"
+
+        annotator.save()
+        annotator = None
+        annotator = Annotator.load()
+
+        msg = "Annotator persistance fail."
+        self.assertIsInstance(annotator, Annotator, msg)  # 1.4
+        print "Annotator Test Set: 1.4 Success"

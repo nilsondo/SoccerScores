@@ -1,10 +1,15 @@
-import cPickle as pickle
+try:
+   import cPickle as pickle
+except:
+   import pickle
 import os
 
 
 class Annotator:
     '''
     '''
+
+    __file = os.path.abspath(os.path.join(os.getcwd(), 'annotator.pickle'))
 
     def __init__(self):
         '''
@@ -17,6 +22,7 @@ class Annotator:
         '''
         Create a new instance of the class Annotator.
         '''
+        print os.getcwd()
         return cls()
 
     @classmethod
@@ -24,13 +30,25 @@ class Annotator:
         '''
         Load the already created Annotator object.
         '''
-        pass
+        try:
+            handle = open(cls.__file, 'rb')
+            obj = pickle.load(handle)
+
+            if isinstance(obj, Annotator):
+                return obj
+            else:
+                return cls.create()
+
+            handle.close()
+        except IOError:
+            return cls.create()
 
     def save(self):
         '''
         Save the current object in static location.
         '''
-        pass
+        with open(self.__file, 'wb') as handle:
+            pickle.dump(self, handle)
 
     def add_match(self, match):
         '''
