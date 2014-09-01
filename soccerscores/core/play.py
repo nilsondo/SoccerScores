@@ -112,6 +112,12 @@ class Play:
         '''
         Returns a string with time, type and description of the play.
         '''
-        return (str(self.__time) + "' " +
+        if self.__spec == 7:
+            return (str(self.__time) + "' " +
                 self.__defined_types[self.__ptype] +
+                ", " + self.__descrip)
+        else:
+            return (str(self.__time) + "' " +
+                self.__defined_types[self.__ptype] + ", " +
+                self.__defined_specs[self.__spec] +
                 ", " + self.__descrip)

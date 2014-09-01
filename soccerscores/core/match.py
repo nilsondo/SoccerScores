@@ -78,12 +78,20 @@ class Match:
         '''
         Return the string format description for the given match.
         '''
+        state = None
+        if self.__state is True:
+            state = 'In progress'
+        elif self.__state is False:
+            state = 'Finish'
+        else:
+            state = 'Not started'
         return (
             self.__home.name + ' ' +
             self.__separator + ' ' +
             self.__away.name + ' ' +
             str(self.__score[1]) + ' - ' +
-            str(self.__score[2]))
+            str(self.__score[2]) + ' |' +
+            state + '|')
 
     @property
     def home(self):

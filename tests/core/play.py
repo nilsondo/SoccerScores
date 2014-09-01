@@ -109,7 +109,7 @@ class Test(unittest.TestCase):
         print "Play Test Set: 1.10 Success"
 
         msg = "Play f. display fail"
-        play = Play(ptype=0, spec=404, team='home', descrip='Home scores',
+        play = Play(ptype=0, spec=7, team='home', descrip='Home scores',
                     time=35)
         self.assertEqual(play.display(), "35' Gol, Home scores")  # 2.0
         print "Play Test Set: 2.0 Success"

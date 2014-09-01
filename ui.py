@@ -200,25 +200,25 @@ def view_match(match):
                 elif opt == 4:
                     if match.state:
                         try:
-                            time = int(raw_input("Play's time (min): "))
-                            ptype = int(raw_input("Play's type (options(int)->" +
-                                                  " 0: 'Gol', 1: 'Red Card', 2:" +
+                            time = int(raw_input("Play time [MIN]: "))
+                            ptype = int(raw_input("Play type [OPTIONS]:\n" +
+                                                  "0: 'Gol', 1: 'Red Card', 2:" +
                                                   " 'Yellow Card', 3: 'Change'," +
                                                   "4: 'Comment': "))
-                            spec = int(raw_input("Play's spec (options(int)->" +
-                                                 " 0: 'Hand kick', " +
+                            spec = int(raw_input("Play spec [OPTIONS]:\n" +
+                                                 "0: 'Hand kick', " +
                                                  "1: 'Croner kick', " +
                                                  "2: 'Goal kick', 3: 'Pass', " +
-                                                 "4: 'Center', 5: 'Clearance', " +
+                                                 "4: 'Center',\n5: 'Clearance', " +
                                                  "6: 'Ahead position', " +
                                                  "7: 'None':"))
                             team = str(
-                                raw_input("Play's team (home/away): ")).lower()
+                                raw_input("Play team [home/away]: ")).lower()
                             # team_name = match.team
 
-                            descrip = str(raw_input("Play's descrip: ")).upper()
+                            descrip = str(raw_input("Play description: ")).upper()
                             play = Play(time=time, ptype=ptype, spec=spec,
-                                        team=team_name, descrip=descrip)
+                                        team=team, descrip=descrip)
                             match.add_play(play)
 
                             if ptype == 0:
@@ -234,7 +234,6 @@ def view_match(match):
                     else:
                         print 'Match is not started or has finished, press ENTER to continue...'
                         sys.stdin.read(1)
-
             else:
                 print 'Unknown option, press ENTER to continue...'
                 sys.stdin.read(1)
