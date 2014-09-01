@@ -78,8 +78,8 @@ def view_annotator():
                     home_name = str(raw_input('Home team name: '))
                     away_name = str(raw_input('Away team name: '))
 
-                    if(re.match(r'(^[a-z][a-z]*$)+', home_name) and
-                       re.match(r'(^[a-z][a-z]*$)+', away_name)):
+                    if(re.match(r'(^[A-Za-z][A-Za-z]*$)+', home_name) and
+                       re.match(r'(^[A-Za-z][A-Za-z]*$)+', away_name)):
                             home = Team(name=home_name)
                             away = Team(name=away_name)
 
