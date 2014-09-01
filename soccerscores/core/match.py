@@ -69,8 +69,10 @@ class Match:
         '''
         Set the state of the match to finish.
         '''
-        self.__state = False
-        return True
+        if self.__state:
+            self.__state = False
+            return True
+        return False
 
     def display(self):
         '''

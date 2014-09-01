@@ -57,8 +57,7 @@ def view_annotator():
     global flag
     annotator = Annotator.create()
 
-    options = {1: 'View matches', 2: 'Create new match',
-               3: 'Remove matches', 0: 'Exit'}
+    options = {1: 'View matches', 2: 'Create new match', 0: 'Exit'}
 
     while(flag):
         sys.stdin.flush()
@@ -92,15 +91,15 @@ def view_annotator():
 def view_matches(annotator):
     from soccerscores.core.play import Play
 
-    str_matches = {}
-
-    for mid, match in sorted(annotator.matches.items()):
-        str_matches[mid] = match.display()
-
     global flag
-    options = {1: 'Return to main options', 0: 'Exit', 2: 'View Match'}
+    options = {1: 'Return to main options', 0: 'Exit', 2: 'View Match',
+               3: 'Remove Match'}
 
     while(flag):
+        str_matches = {}
+        for mid, match in sorted(annotator.matches.items()):
+            str_matches[mid] = match.display()
+
         sys.stdin.flush()
         os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -123,6 +122,17 @@ def view_matches(annotator):
 
                     if match:
                         view_match(match)
+                    else:
+                        print 'Unknown ID, press ENTER to continue...'
+                        sys.stdin.read(1)
+                elif opt == 3:
+                    mid = str(raw_input('Match ID: ')).upper()
+                    match = annotator.get_match(mid)
+
+                    if match:
+                        annotator.remove_match(match)
+                        print match.mid + ' deleted'
+                        sys.stdin.read(1)
                     else:
                         print 'Unknown ID, press ENTER to continue...'
                         sys.stdin.read(1)
@@ -161,9 +171,13 @@ def view_match(match):
                 elif opt == 2:
                     pass
                 elif opt == 3:
-                    match.start_match()
+                    if match.start_match():
+                        print 'Match started'
+                        sys.stdin.read(1)
                 elif opt == 4:
-
+                    if match.finish_match():
+                        print 'Match finished'
+                        sys.stdin.read(1)
                 elif opt == 5:
                     pass
             else:
