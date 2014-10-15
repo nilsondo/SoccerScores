@@ -2,6 +2,7 @@ import unittest
 from src.model.annotator import Annotator
 from src.model.match import Match
 from src.model.team import Team
+from src.view.annotator import AnnotatorView
 
 
 class TestMatch(Match):
@@ -33,6 +34,7 @@ class Test(unittest.TestCase):
     1.2 - Annotator should be able to remove matches
     1.3 - Annotator should be able to get an specifix match
     1.4 - Annotator should be able to save and load from an static file
+    1.5 - Annotator should be able to add views
 
     *2* - Functions:
     2.0 - Annotator must be able to return its own information.
@@ -86,6 +88,13 @@ class Test(unittest.TestCase):
         self.assertIsInstance(annotator, Annotator, msg)  # 1.4
         print "Annotator Test Set: 1.4 Success"
 
+        view = AnnotatorView()
+        annotator.add_view(view)
+
+        msg = "Annotator view addition fail."
+        self.assertTrue(len(annotator.views) == 1, msg)  # 1.5
+        print "Annotator Test Set: 1.5 Success"
+
         msg = "Annotator display information fail"
-        self.assertIsInstance(annotator.display(), str)  # 2.0
+        self.assertTrue(annotator.display(), dict)  # 2.0
         print "Annotator Test Set: 2.0 Success"

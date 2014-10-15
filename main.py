@@ -1,11 +1,11 @@
 from src.model.annotator import Annotator
-from src.controller.annotator import AnotatorController
+from src.controller.annotator import AnnotatorController
 from src.view.annotator import AnnotatorView
 
 
 def main():
     model = Annotator.create()
-    ctrl = AnotatorController()
+    ctrl = AnnotatorController()
     view = AnnotatorView()
 
     model.add_view(view)

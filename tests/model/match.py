@@ -40,12 +40,12 @@ class Test(unittest.TestCase):
         self.assertTrue(match.state, msg)  # 1.1
         print "Match Test Set: 1.1 Success"
 
-        match.add_point(team=1)
-        match.add_point(team=1)
-        match.add_point(team=2)
+        match.add_point(team=home)
+        match.add_point(team=home)
+        match.add_point(team=away)
 
         msg = "Score match fail."
-        self.assertEqual(match.score, {1: 2, 2: 1}, msg)  # 1.2
+        self.assertEqual(match.score, {home: 2, away: 1}, msg)  # 1.2
         print "Match Test Set: 1.2 Success"
 
         match.finish_match()

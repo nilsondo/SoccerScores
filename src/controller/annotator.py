@@ -1,7 +1,7 @@
 from src.model.annotator import Annotator
 
 
-class AnotatorController():
+class AnnotatorController():
 
     '''
     Anotator controller class.
@@ -27,18 +27,26 @@ class AnotatorController():
         else:
             raise Exception('Invalid model.')
 
+    def save(self):
+        '''
+        Save the current model state in a static location.
+        '''
+        self.model.save()
+
     def add_match(self, match):
         '''
         Add the given match to the model.
         '''
         self.model.add_match(match)
 
-    def get_match(self, mid, view):
+    def get_match(self, mid, view=None):
         '''
         Returns the the Match object given a valid mid.
         '''
         match = self.model.get_match(mid)
-        match.add_view(view)
+
+        if view:
+            match.add_view(view)
 
         return match
 
@@ -54,11 +62,12 @@ class AnotatorController():
         else:
             return False
 
-    def remove_match_view(self, match, view):
+    def remove_match_view(self, match, view=None):
         '''
         Remove the current match listener.
         '''
-        match.remove_view(view)
+        if view:
+            match.remove_view(view)
 
     def add_play(self, match, play):
         '''
