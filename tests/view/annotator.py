@@ -2,6 +2,7 @@ import unittest
 from src.controller.annotator import AnnotatorController
 from src.view.annotator import AnnotatorView
 
+
 class Test(unittest.TestCase):
 
     '''

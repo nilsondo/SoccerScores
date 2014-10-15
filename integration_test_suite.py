@@ -10,9 +10,9 @@ def suite():
     Gather all the tests in a test suite.
     '''
     test_suite = unittest.TestSuite()
+    test_suite.addTest(unittest.makeSuite(AnnotatorView.Test))
     test_suite.addTest(unittest.makeSuite(AnnotatorController.Test))
     test_suite.addTest(unittest.makeSuite(annotator.Test))
-    test_suite.addTest(unittest.makeSuite(AnnotatorView.Test))
     return test_suite
 
 if __name__ == "__main__":

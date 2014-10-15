@@ -10,7 +10,7 @@ class Test(unittest.TestCase):
     1.0 - Play should be able to create an object instance.
     1.1 - Play should receive a valid team object.
     1.2 - Play should receive a valid int type.
-    1.2 - Play should receive a valid int spec.
+    1.3 - Play should receive a valid int spec.
     1.4 - Play must receive a string description empty or not.
     1.5 - Play should receive a valid int time
 
