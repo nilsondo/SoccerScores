@@ -1,8 +1,8 @@
 import unittest
-from tests.access import annotator
-from tests.core import match
-from tests.core import team
-from tests.core import play
+from tests.model import team
+from tests.model import play
+from tests.model import match
+from tests.model import annotator
 import sys
 
 

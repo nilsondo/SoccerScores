@@ -1,32 +1,36 @@
+from src.model.team import Team
+
+
 class Play:
+
     '''
     Play class.
     '''
 
-    __defined_types = {0: 'Gol', 1: 'Red Card', 2: 'Yellow Card', 3: 'Change',
-                       4: 'Comment'}
-    __defined_specs = {0: 'Hand kick', 1: 'Croner kick',
-                       2: 'Goal kick', 3: 'Pass', 4: 'Center',
-                       5: 'Clearance', 6: 'Ahead position', 7: 'None'}
+    defined_types = {0: 'Goal', 1: 'Red Card', 2: 'Yellow Card', 3: 'Change',
+                     4: 'Comment'}
+    defined_specs = {0: 'Hand kick', 1: 'Corner kick',
+                     2: 'Goal kick', 3: 'Pass', 4: 'Center',
+                     5: 'Clearance', 6: 'Ahead position', 7: 'None'}
 
     def __init__(self, ptype, spec, team, descrip, time=None):
         '''
         Constructor
         '''
-        if isinstance(ptype, int) and ptype in self.__defined_types.keys():
+        if isinstance(ptype, int) and ptype in self.defined_types.keys():
             self.__ptype = ptype
         else:
             raise Exception('Invalid type.')
 
-        if isinstance(spec, int) and spec in self.__defined_specs.keys():
+        if isinstance(spec, int) and spec in self.defined_specs.keys():
             self.__spec = spec
         else:
             raise Exception('Invalid specialization.')
 
-        if isinstance(team, str) and team.lower() in {'home', 'away'}:
-            self.__team = team.lower()
+        if isinstance(team, Team):
+            self.__team = team
         else:
-            raise Exception('Invalid team name.')
+            raise Exception('Invalid team.')
 
         if isinstance(descrip, str):
             self.__descrip = descrip
@@ -114,10 +118,10 @@ class Play:
         '''
         if self.__spec == 7:
             return (str(self.__time) + "' " +
-                self.__defined_types[self.__ptype] +
-                ", " + self.__descrip)
+                    self.defined_types[self.__ptype] +
+                    ", " + self.__descrip)
         else:
             return (str(self.__time) + "' " +
-                self.__defined_types[self.__ptype] + ", " +
-                self.__defined_specs[self.__spec] +
-                ", " + self.__descrip)
+                    self.defined_types[self.__ptype] + ", " +
+                    self.defined_specs[self.__spec] +
+                    ", " + self.__descrip)

@@ -1,16 +1,19 @@
 import unittest
-from soccerscores.core.match import Match
-from soccerscores.core.team import Team
+from src.model.match import Match
+from src.model.team import Team
 
 
 class Test(unittest.TestCase):
 
     '''
+    *1* - Instance & Properties:
     1.0 - Match should be able to create an object instance.
     1.1 - Match should be able to start a match.
     1.2 - Match should be able to add points.
     1.3 - Match should be able to finish a match.
-    1.4 - Match should be able to display a summary of itself.
+
+    *2* - Functions:
+    2.0 - Match must be able to return its own information.
     '''
 
     def setUp(self):
@@ -54,5 +57,5 @@ class Test(unittest.TestCase):
         summary = match.display()
 
         msg = "Display summary match fail."
-        self.assertIsInstance(summary, str, msg)  # 1.4
-        print "Match Test Set: 1.4 Success"
+        self.assertIsInstance(summary, str, msg)  # 2.0
+        print "Match Test Set: 2.0 Success"

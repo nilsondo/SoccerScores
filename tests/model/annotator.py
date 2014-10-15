@@ -1,10 +1,11 @@
 import unittest
-from soccerscores.access.annotator import Annotator
-from soccerscores.core.match import Match
-from soccerscores.core.team import Team
+from src.model.annotator import Annotator
+from src.model.match import Match
+from src.model.team import Team
 
 
-class TestMatch():
+class TestMatch(Match):
+
     '''
     Test class for a match.
     '''
@@ -24,13 +25,19 @@ class TestMatch():
 
 
 class Test(unittest.TestCase):
+
     '''
+    *1* - Instance & Properties:
     1.0 - Annotator should be able to create an object instance
     1.1 - Annotator should be able to add matches
     1.2 - Annotator should be able to remove matches
     1.3 - Annotator should be able to get an specifix match
     1.4 - Annotator should be able to save and load from an static file
+
+    *2* - Functions:
+    2.0 - Annotator must be able to return its own information.
     '''
+
     def setUp(self):
         print ""
         print "################################################"
@@ -78,3 +85,7 @@ class Test(unittest.TestCase):
         msg = "Annotator persistance fail."
         self.assertIsInstance(annotator, Annotator, msg)  # 1.4
         print "Annotator Test Set: 1.4 Success"
+
+        msg = "Annotator display information fail"
+        self.assertIsInstance(annotator.display(), str)  # 2.0
+        print "Annotator Test Set: 2.0 Success"
