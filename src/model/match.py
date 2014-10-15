@@ -59,9 +59,9 @@ class Match:
         '''
         Remove the given view of the views set.
         '''
-        if len(self.view) > 0:
+        if len(self.views) > 0:
             try:
-                self.view.remove(view)
+                self.views.remove(view)
             except:
                 return None
         else:

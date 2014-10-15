@@ -6,10 +6,9 @@ class AnotatorController():
     '''
     Anotator controller class.
     '''
-    __model = None
 
     def __init__(self):
-        pass
+        self.__model = None
 
     @property
     def model(self):
@@ -65,7 +64,6 @@ class AnotatorController():
         '''
         Add a given play to the plays stack of the given Match.
         '''
-        print('HERE')
         match.add_play(play)
 
     def start_match(self, match):
@@ -82,5 +80,6 @@ class AnotatorController():
 
     def match_started(self, match):
         '''
+        Return match state.
         '''
         return match.state

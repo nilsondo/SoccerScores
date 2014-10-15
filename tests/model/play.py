@@ -75,5 +75,5 @@ class Test(unittest.TestCase):
         msg = "Play display information fail"
         play = Play(ptype=0, spec=7, team=team, descrip='Home scores',
                     time=35)
-        self.assertEqual(play.display(), "35' Gol, Home scores")  # 2.0
+        self.assertEqual(play.display(), "35' Goal, Home scores")  # 2.0
         print "Play Test Set: 2.0 Success"
