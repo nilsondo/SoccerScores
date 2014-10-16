@@ -4,7 +4,7 @@ from src.view.annotator import AnnotatorView
 
 
 def main():
-    model = Annotator.create()
+    model = Annotator.load()
     ctrl = AnnotatorController()
     view = AnnotatorView()
 

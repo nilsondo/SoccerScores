@@ -109,6 +109,7 @@ class Match:
         '''
         if self.state:
             self.__plays.append(play)
+            self.notify_match_change()
 
             # if the play is a Goal, then a point is added
             if(play.ptype is 0):

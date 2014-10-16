@@ -22,8 +22,8 @@ class AnnotatorView():
         self.__str_matches = {}
         self.__str_match = ''
         self.__str_plays = {}
-        self.__str_ptype = ''
-        self.__str_spec = ''
+        self.__str_ptype = """0: Goal, 1: Red Card, 2: Yellow Card,\n3: Change, 4: Comment\n"""
+        self.__str_spec = """0: Hand kick, 1: Corner kick,\n2: Goal kick, 3: Pass, 4: Center,\n5: Clearance, 6: Ahead position, 7: None\n"""
 
     @property
     def ctrl(self):
@@ -96,7 +96,8 @@ class AnnotatorView():
         from src.model.play import Play
 
         options = {0: 'Exit', 1: 'Return to annotator options',
-                   2: 'Start match', 3: 'Finish match', 4: 'Add play'}
+                   2: 'Start match', 3: 'Finish match', 4: 'Add play',
+                   5: 'Save annotator state'}
 
         while(self.__flag):
             sys.stdin.flush()
@@ -159,6 +160,12 @@ class AnnotatorView():
                             print ('Match is not started or has finished, ' +
                                    self.__enter_msg)
                             sys.stdin.read(1)
+
+                    elif opt == 5:
+                        self.ctrl.save()
+                        print ('State saved, ' + self.__enter_msg)
+                        sys.stdin.read(1)
+
                 else:
                     print ('Unknown option, '
                            + self.__enter_msg)
@@ -176,7 +183,7 @@ class AnnotatorView():
         from src.model.team import Team
 
         options = {0: 'Exit', 1: 'Create new match', 2: 'View Match',
-                   3: 'Remove Match'}
+                   3: 'Remove Match', 4: 'Save annotator state'}
 
         while(self.__flag):
             sys.stdin.flush()
@@ -222,6 +229,12 @@ class AnnotatorView():
                         else:
                             print ('Unknown ID, ' + self.__enter_msg)
                             sys.stdin.read(1)
+
+                    elif opt == 4:
+                        self.ctrl.save()
+                        print ('State saved, ' + self.__enter_msg)
+                        sys.stdin.read(1)
+
                 else:
                     print ('Unknown option, ' + self.__enter_msg)
                     sys.stdin.read(1)
